@@ -10,11 +10,36 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-model Example {
+model User {
     id        Int      @id @default(autoincrement())
-    name      String
+    webflowUserId String @unique
+    email     String   @unique
+    firstName     String
+    lastName      String
+    oauthToken    String
+
+    sites   Site[]
+    
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
-    @@index([name])
+}
+
+model Site {
+    id        Int      @id @default(autoincrement())
+    siteId     String   @unique
+    workspaceId     String   
+    displayName     String  
+    previewUrl   String
+    firstName     String
+    lastName      String
+    oauthToken    String
+
+    user    User?    @relation(fields: [userId], references: [id])
+    userId  Int?
+    
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@index([userId])
 }
