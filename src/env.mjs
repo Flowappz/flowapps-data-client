@@ -19,6 +19,8 @@ export const env = createEnv({
       .default("development"),
     WEBFLOW_CLIENT_ID: z.string(),
     WEBFLOW_CLIENT_SECRET: z.string(),
+    WEBFLOW_REDIRECT_URL: z.string(),
+    WEBFLOW_SCOPES: z.string(),
   },
 
   /**
@@ -39,6 +41,8 @@ export const env = createEnv({
     NODE_ENV: process.env.NODE_ENV,
     WEBFLOW_CLIENT_ID: process.env.WEBFLOW_CLIENT_ID,
     WEBFLOW_CLIENT_SECRET: process.env.WEBFLOW_CLIENT_SECRET,
+    WEBFLOW_REDIRECT_URL: process.env.WEBFLOW_REDIRECT_URL,
+    WEBFLOW_SCOPES: process.env.WEBFLOW_SCOPES,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
   /**
