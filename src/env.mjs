@@ -21,6 +21,8 @@ export const env = createEnv({
     WEBFLOW_CLIENT_SECRET: z.string(),
     WEBFLOW_REDIRECT_URL: z.string(),
     WEBFLOW_SCOPES: z.string(),
+    BASIC_AUTH_USER: z.string(),
+    BASIC_AUTH_PASSWORD: z.string(),
   },
 
   /**
@@ -43,6 +45,8 @@ export const env = createEnv({
     WEBFLOW_CLIENT_SECRET: process.env.WEBFLOW_CLIENT_SECRET,
     WEBFLOW_REDIRECT_URL: process.env.WEBFLOW_REDIRECT_URL,
     WEBFLOW_SCOPES: process.env.WEBFLOW_SCOPES,
+    BASIC_AUTH_USER: process.env.BASIC_AUTH_USER,
+    BASIC_AUTH_PASSWORD: process.env.BASIC_AUTH_PASSWORD,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
   /**
