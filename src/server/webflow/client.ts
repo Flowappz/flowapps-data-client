@@ -114,45 +114,30 @@ const checkScriptRegistrationStatus = async (
   return { status: false };
 };
 
-const registerAndAddCustomCode = async ({
-  siteId,
-  accessToken,
-}: {
-  siteId: string;
-  accessToken: string;
-}) => {
+const registerAndAddCustomCode = async (
+  siteId: string,
+  accessToken: string,
+  scriptConfig: ScriptConfig,
+): Promise<WebflowCustomCode> => {
+  const { id, version } = await registerScript(
+    siteId,
+    accessToken,
+    scriptConfig,
+  );
+
   const client = webflow(accessToken);
 
-  // console.log("cwd: ", process.cwd());
-  // const sourceCode = await fs.readFile(
-  //   path.join(process.cwd(), "/src/server/webflow/scripts/test.js"),
-  //   { encoding: "utf-8" },
-  // );
-
-  // console.log("sourceCode: ", sourceCode);
-
-  // const { data } = await client.post(
-  //   `/sites/${siteId}/registered_scripts/inline`,
-  //   {
-  //     sourceCode,
-  //     version: "0.0.1",
-  //     displayName: "test script",
-  //   },
-  // );
-
-  // console.log("data: ", data);
-
-  const { data: res } = await client.put(`/sites/${siteId}/custom_code`, {
+  const { data } = await client.put(`/sites/${siteId}/custom_code`, {
     scripts: [
       {
-        id: "test_script",
-        location: "header",
-        version: "0.0.1",
+        id,
+        version,
+        location: scriptConfig.location,
       },
     ],
   });
 
-  return res;
+  return data.scripts[0];
 };
 
 const deleteCustomCode = async (
