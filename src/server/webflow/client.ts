@@ -118,12 +118,24 @@ const getListOfCustomCodes = async (
   return data;
 };
 
+const getListOfRegisteredScripts = async (
+  siteId: string,
+  accessToken: string,
+): Promise<WebflowCustomScript[]> => {
+  const { data } = await webflow(accessToken).get(
+    `/sites/${siteId}/registered_scripts`,
+  );
+
+  return data;
+};
+
 const webflowClient = {
   getAuthenticatedUser,
   getSitesList,
   registerAndAddCustomCode,
   deleteCustomCode,
   getListOfCustomCodes,
+  getListOfRegisteredScripts,
 };
 
 export default webflowClient;
