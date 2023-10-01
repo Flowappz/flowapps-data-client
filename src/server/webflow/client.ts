@@ -26,6 +26,13 @@ export type WebflowCustomScript = {
   version: string;
 };
 
+export type WebflowCustomCode = {
+  id: string;
+  location: "header" | "footer";
+  version: string;
+  attributes: { key: string };
+};
+
 const webflow = (accessToken: string) => {
   return new Webflow({ token: accessToken, beta: true });
 };
@@ -103,7 +110,7 @@ const deleteCustomCode = async (
 const getListOfCustomCodes = async (
   siteId: string,
   accessToken: string,
-): Promise<WebflowCustomScript[]> => {
+): Promise<WebflowCustomCode[]> => {
   const { data } = await webflow(accessToken).get(
     `/sites/${siteId}/custom_code`,
   );
