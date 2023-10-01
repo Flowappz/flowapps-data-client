@@ -17,6 +17,15 @@ export type WebflowSite = {
   previewUrl: string;
 };
 
+export type WebflowCustomScript = {
+  id: string;
+  displayName: string;
+  hostedLocation: string;
+  integrityHash: string;
+  canCopy: boolean;
+  version: string;
+};
+
 const webflow = (accessToken: string) => {
   return new Webflow({ token: accessToken, beta: true });
 };
@@ -91,11 +100,23 @@ const deleteCustomCode = async (
   return status === 204;
 };
 
+const getListOfCustomCodes = async (
+  siteId: string,
+  accessToken: string,
+): Promise<WebflowCustomScript[]> => {
+  const { data } = await webflow(accessToken).get(
+    `/sites/${siteId}/custom_code`,
+  );
+
+  return data;
+};
+
 const webflowClient = {
   getAuthenticatedUser,
   getSitesList,
   registerAndAddCustomCode,
   deleteCustomCode,
+  getListOfCustomCodes,
 };
 
 export default webflowClient;
