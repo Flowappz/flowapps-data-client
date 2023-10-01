@@ -80,10 +80,22 @@ const registerAndAddCustomCode = async ({
   return res;
 };
 
+const deleteCustomCode = async (
+  siteId: string,
+  accessToken: string,
+): Promise<boolean> => {
+  const { status } = await webflow(accessToken).delete(
+    `/sites/${siteId}/custom_code`,
+  );
+
+  return status === 204;
+};
+
 const webflowClient = {
   getAuthenticatedUser,
   getSitesList,
   registerAndAddCustomCode,
+  deleteCustomCode,
 };
 
 export default webflowClient;
