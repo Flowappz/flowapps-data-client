@@ -1,6 +1,6 @@
 import { db } from "@/server/db";
 import webflowDataSerializer from "@/server/serializer/webflowDataSerializer";
-import dbService from "@/server/services/dbService";
+import userService from "@/server/services/userService";
 import webflowAuth from "@/server/webflow/auth";
 import webflowClient from "@/server/webflow/client";
 import { NextApiRequest, NextApiResponse } from "next";
@@ -39,7 +39,7 @@ export default async function handler(
     const serializedSites =
       webflowDataSerializer.serializedWebflowSitesListToDbSites(sites);
 
-    const user = await dbService.upsertUserAndSites(
+    const user = await userService.upsertUserAndSites(
       serializedUser,
       serializedSites,
     );
