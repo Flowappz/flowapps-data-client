@@ -1,6 +1,7 @@
 import Webflow from "webflow-api";
 import fs from "node:fs/promises";
 import path from "node:path";
+import { ScriptConfig } from "@/config/customScripts";
 
 export type AuthenticatedUser = {
   id: string;
@@ -53,6 +54,29 @@ const getSitesList = async (accessToken: string): Promise<WebflowSite[]> => {
   } = await webflow(accessToken).get("/sites");
 
   return sites;
+};
+
+const registerScript = async (
+  siteId: string,
+  accessToken: string,
+  scriptConfig: ScriptConfig,
+): Promise<WebflowCustomScript> => {
+  const { displayName, version, path: scriptPath } = scriptConfig;
+
+  const sourceCode = await fs.readFile(path.join(process.cwd(), scriptPath), {
+    encoding: "utf-8",
+  });
+
+  const { data } = await webflow(accessToken).post(
+    `/sites/${siteId}/registered_scripts/inline`,
+    {
+      sourceCode,
+      version,
+      displayName,
+    },
+  );
+
+  return data;
 };
 
 const registerAndAddCustomCode = async ({
@@ -136,6 +160,7 @@ const webflowClient = {
   deleteCustomCode,
   getListOfCustomCodes,
   getListOfRegisteredScripts,
+  registerScript,
 };
 
 export default webflowClient;
