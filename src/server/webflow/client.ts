@@ -63,6 +63,16 @@ const registerScript = async (
 ): Promise<WebflowCustomScript> => {
   const { displayName, version, path: scriptPath } = scriptConfig;
 
+  const { status, script } = await checkScriptRegistrationStatus(
+    siteId,
+    accessToken,
+    scriptConfig,
+  );
+
+  if (status && script) {
+    return script;
+  }
+
   const sourceCode = await fs.readFile(path.join(process.cwd(), scriptPath), {
     encoding: "utf-8",
   });
