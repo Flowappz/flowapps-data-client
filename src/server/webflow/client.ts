@@ -79,6 +79,31 @@ const registerScript = async (
   return data;
 };
 
+const checkScriptRegistrationStatus = async (
+  siteId: string,
+  accessToken: string,
+  scriptConfig: ScriptConfig,
+): Promise<{ status: boolean; script?: WebflowCustomScript }> => {
+  const { registeredScripts } = await getListOfRegisteredScripts(
+    siteId,
+    accessToken,
+  );
+
+  for (let script of registeredScripts) {
+    if (
+      script.displayName === scriptConfig.displayName &&
+      script.version === scriptConfig.version
+    ) {
+      return {
+        status: true,
+        script,
+      };
+    }
+  }
+
+  return { status: false };
+};
+
 const registerAndAddCustomCode = async ({
   siteId,
   accessToken,
@@ -145,7 +170,7 @@ const getListOfCustomCodes = async (
 const getListOfRegisteredScripts = async (
   siteId: string,
   accessToken: string,
-): Promise<WebflowCustomScript[]> => {
+): Promise<{ registeredScripts: WebflowCustomScript[]; pagination: any }> => {
   const { data } = await webflow(accessToken).get(
     `/sites/${siteId}/registered_scripts`,
   );
@@ -161,6 +186,7 @@ const webflowClient = {
   getListOfCustomCodes,
   getListOfRegisteredScripts,
   registerScript,
+  checkScriptRegistrationStatus,
 };
 
 export default webflowClient;
