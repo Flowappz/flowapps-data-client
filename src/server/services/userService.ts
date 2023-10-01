@@ -27,8 +27,8 @@ async function upsertUserAndSites(
   };
 }
 
-const dbService = {
+const userService = {
   upsertUserAndSites,
 };
 
-export default dbService;
+export default userService;
