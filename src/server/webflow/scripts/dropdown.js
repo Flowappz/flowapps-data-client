@@ -44,7 +44,7 @@ window.formFieldsDropdown = () => {
 
     for (let list of dropdownLists) {
       const name = list.getAttribute(togglerAttributes.NAME);
-      DROPDOWN_LISTS[name] = toggler;
+      DROPDOWN_LISTS[name] = list;
     }
   }
 
