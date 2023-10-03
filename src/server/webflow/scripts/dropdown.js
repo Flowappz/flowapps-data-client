@@ -3,6 +3,7 @@ window.formFieldsDropdown = () => {
     DROPDOWN_TOGGLER: "[form-field-dropdown-toggler]",
     DROPDOWN_INPUT: "[form-field-dropdown-input]",
     DROPDOWN_ITEM: "[form-field-dropdown-item]",
+    DROPDOWN_LIST: "[form-field-dropdown-item-list]",
   };
 
   const togglerAttributes = {
@@ -15,9 +16,14 @@ window.formFieldsDropdown = () => {
   };
 
   /**
-   * @type {{[k: string]: Element}}
+   * @type {{[k: string]: HTMLElement}}
    */
   const DROPDOWN_TOGGLERS = {};
+
+  /**
+   * @type {{[k: string]: HTMLElement}}
+   */
+  const DROPDOWN_LISTS = {};
 
   /**
    * @type {{[k: string]: HTMLInputElement}}
@@ -30,6 +36,15 @@ window.formFieldsDropdown = () => {
     for (let toggler of togglers) {
       const name = toggler.getAttribute(togglerAttributes.NAME);
       DROPDOWN_TOGGLERS[name] = toggler;
+    }
+  }
+
+  function selectDropdownLists() {
+    const dropdownLists = document.querySelectorAll(selectors.DROPDOWN_LIST);
+
+    for (let list of dropdownLists) {
+      const name = list.getAttribute(togglerAttributes.NAME);
+      DROPDOWN_LISTS[name] = toggler;
     }
   }
 
@@ -46,11 +61,21 @@ window.formFieldsDropdown = () => {
     return document.querySelectorAll(selectors.DROPDOWN_ITEM);
   }
 
-  /**
-   *
-   * @param {Element[]} dropdownItems
-   */
-  function makeTheDropdownsInteractive(dropdownItems) {
+  function showListItemsOnTogglerClick() {
+    for (let toggler in DROPDOWN_TOGGLERS) {
+      toggler.addEventListener("click", () => {
+        const name = toggler.getAttribute(togglerAttributes.NAME);
+
+        if (name) {
+          DROPDOWN_LISTS[name].style.display = "initial";
+        }
+      });
+    }
+  }
+
+  function setInputValueOnItemClick() {
+    const dropdownItems = getDropdownItems();
+
     for (let item of dropdownItems) {
       item.addEventListener("click", () => {
         const data = item.getAttribute(togglerItemAttributes.INPUT_DATA);
@@ -59,16 +84,23 @@ window.formFieldsDropdown = () => {
         if (inputName) {
           DROPDOWN_INPUTS[inputName].value = data;
           DROPDOWN_TOGGLERS[inputName].innerHTML = data;
+
+          DROPDOWN_LISTS[inputName].style.display = "none";
         }
       });
     }
   }
 
+  function makeTheDropdownsInteractive() {
+    showListItemsOnTogglerClick();
+    setInputValueOnItemClick();
+  }
+
   selectDropdownTogglers();
+  selectDropdownLists();
   selectDropdownInputs();
 
-  const dropdownItems = getDropdownItems();
-  makeTheDropdownsInteractive(dropdownItems);
+  makeTheDropdownsInteractive();
 };
 
 window.formFieldsDropdown();
