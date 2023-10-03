@@ -62,7 +62,8 @@ window.formFieldsDropdown = () => {
   }
 
   function showListItemsOnTogglerClick() {
-    for (let toggler in DROPDOWN_TOGGLERS) {
+    for (let key in DROPDOWN_TOGGLERS) {
+      const toggler = DROPDOWN_TOGGLERS[key];
       toggler.addEventListener("click", () => {
         const name = toggler.getAttribute(togglerAttributes.NAME);
 
