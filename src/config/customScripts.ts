@@ -26,8 +26,8 @@ export const CUSTOM_SCRIPTS_CONFIG: {
   },
   [CUSTOM_SCRIPTS_NAME.DROPDOWN]: {
     displayName: CUSTOM_SCRIPTS_NAME.DROPDOWN,
-    version: "0.0.1",
+    version: "0.0.5",
     location: "footer",
-    path: `${CUSTOM_SCRIPTS_BASE_FILE_PATH}/dropdown.js`,
+    path: `${CUSTOM_SCRIPTS_BASE_FILE_PATH}/minified/dropdown.min.js`,
   },
 };
