@@ -68,7 +68,7 @@ window.formFieldsDropdown = () => {
         const name = toggler.getAttribute(togglerAttributes.NAME);
 
         if (name) {
-          DROPDOWN_LISTS[name].style.display = "initial";
+          DROPDOWN_LISTS[name].style.display = "block";
         }
       });
     }
