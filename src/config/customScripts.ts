@@ -9,6 +9,7 @@ export const CUSTOM_SCRIPTS_BASE_FILE_PATH = "/src/server/webflow/scripts";
 
 export const CUSTOM_SCRIPTS_NAME = {
   TEST: "test script",
+  DROPDOWN: "dropdown",
 } as const;
 
 type scriptKeys = keyof typeof CUSTOM_SCRIPTS_NAME;
@@ -22,5 +23,11 @@ export const CUSTOM_SCRIPTS_CONFIG: {
     path: `${CUSTOM_SCRIPTS_BASE_FILE_PATH}/test.js`,
     displayName: CUSTOM_SCRIPTS_NAME.TEST,
     location: "footer",
+  },
+  [CUSTOM_SCRIPTS_NAME.DROPDOWN]: {
+    displayName: CUSTOM_SCRIPTS_NAME.DROPDOWN,
+    version: "0.0.1",
+    location: "footer",
+    path: `${CUSTOM_SCRIPTS_BASE_FILE_PATH}/dropdown.js`,
   },
 };
