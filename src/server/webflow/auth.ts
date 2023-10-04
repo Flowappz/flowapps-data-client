@@ -6,7 +6,7 @@ const webflowClient = new Webflow();
 
 const authorizeUrl = webflowClient.authorizeUrl({
   client_id: process.env.WEBFLOW_CLIENT_ID as string,
-  redirect_uri: process.env.WEBFLOW_REDIRECT_URL as string,
+  // redirect_uri: process.env.WEBFLOW_REDIRECT_URL as string,
   scopes: process.env.WEBFLOW_SCOPES?.split(",") as SupportedScope[],
 });
 
@@ -15,7 +15,7 @@ const getAccessToken = async (code: string) => {
     client_id: env.WEBFLOW_CLIENT_ID,
     client_secret: env.WEBFLOW_CLIENT_SECRET,
     code,
-    redirect_uri: env.WEBFLOW_REDIRECT_URL,
+    // redirect_uri: env.WEBFLOW_REDIRECT_URL,
   });
 
   return token.access_token;
