@@ -12,8 +12,6 @@ export default async function handler(
   try {
     const { code, state, error, error_description } = req.query;
 
-    res.status(200).json({ status: "OK" });
-
     if (error) {
       console.log("Error returned from webflow auth callback");
       console.log(
@@ -43,6 +41,8 @@ export default async function handler(
       serializedUser,
       serializedSites,
     );
+
+    res.redirect("https://webflow.com/dashboard");
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Something went wrong!" });
