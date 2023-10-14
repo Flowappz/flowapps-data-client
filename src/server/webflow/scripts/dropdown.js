@@ -128,9 +128,32 @@ window.formFieldsDropdown = () => {
     }
   }
 
+  function filterItemsOnInputChange() {
+    const inputKeys = Object.keys(SEARCHABLE_DROPDOWN_TOGGLERS);
+
+    for (let key of inputKeys) {
+      DROPDOWN_INPUTS[key].addEventListener("input", (e) => {
+        const val = e.target.value;
+
+        if (val.trim()) {
+          for (let item of SEARCHABLE_DROPDOWN_LIST_ITEMS[key]) {
+            if (item.innerText.toLowerCase().includes(val.toLowerCase())) {
+              item.style.display = "block";
+            } else item.style.display = "none";
+          }
+        } else {
+          for (let item of SEARCHABLE_DROPDOWN_LIST_ITEMS[key]) {
+            item.style.display = "block";
+          }
+        }
+      });
+    }
+  }
+
   function makeTheDropdownsInteractive() {
     showListItemsOnTogglerClick();
     setInputValueOnItemClick();
+    filterItemsOnInputChange();
   }
 
   selectDropdownTogglers();
