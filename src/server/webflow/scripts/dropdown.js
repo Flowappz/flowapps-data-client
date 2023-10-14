@@ -27,6 +27,11 @@ window.formFieldsDropdown = () => {
   const SEARCHABLE_DROPDOWN_TOGGLERS = {};
 
   /**
+   * @type {{[k: string]: HTMLElement[]}}
+   */
+  const SEARCHABLE_DROPDOWN_LIST_ITEMS = {};
+
+  /**
    * @type {{[k: string]: HTMLElement}}
    */
   const DROPDOWN_LISTS = {};
@@ -109,6 +114,20 @@ window.formFieldsDropdown = () => {
     }
   }
 
+  function selectSearchableItems() {
+    const items = getDropdownItems();
+
+    for (let item of items) {
+      const inputName = item.getAttribute(togglerItemAttributes.INPUT_FIELD);
+
+      if (!SEARCHABLE_DROPDOWN_TOGGLERS[inputName]) continue;
+
+      if (inputName && SEARCHABLE_DROPDOWN_LIST_ITEMS[inputName]) {
+        SEARCHABLE_DROPDOWN_LIST_ITEMS[inputName].push(item);
+      } else if (inputName) SEARCHABLE_DROPDOWN_LIST_ITEMS[inputName] = [item];
+    }
+  }
+
   function makeTheDropdownsInteractive() {
     showListItemsOnTogglerClick();
     setInputValueOnItemClick();
@@ -117,6 +136,7 @@ window.formFieldsDropdown = () => {
   selectDropdownTogglers();
   selectDropdownLists();
   selectDropdownInputs();
+  selectSearchableItems();
 
   makeTheDropdownsInteractive();
 };
