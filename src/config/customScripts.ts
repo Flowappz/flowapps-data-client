@@ -1,8 +1,8 @@
 export type ScriptConfig = {
   displayName: string;
   version: string;
-  path: string;
   location: "header" | "footer";
+  path?: string;
   hosted?: boolean;
   hostedLocation?: string;
   integrityHash?: string;
@@ -13,6 +13,7 @@ export const CUSTOM_SCRIPTS_BASE_FILE_PATH = "/src/server/webflow/scripts";
 export const CUSTOM_SCRIPTS_NAME = {
   TEST: "test script",
   DROPDOWN: "dropdown",
+  DATE_PICKER_LIBRARY: "date picker library",
 } as const;
 
 type scriptKeys = keyof typeof CUSTOM_SCRIPTS_NAME;
@@ -27,10 +28,22 @@ export const CUSTOM_SCRIPTS_CONFIG: {
     displayName: CUSTOM_SCRIPTS_NAME.TEST,
     location: "footer",
   },
+
   [CUSTOM_SCRIPTS_NAME.DROPDOWN]: {
     displayName: CUSTOM_SCRIPTS_NAME.DROPDOWN,
     version: "0.0.54",
     location: "footer",
     path: `${CUSTOM_SCRIPTS_BASE_FILE_PATH}/minified/dropdown.min.js`,
+  },
+
+  [CUSTOM_SCRIPTS_NAME.DATE_PICKER_LIBRARY]: {
+    displayName: CUSTOM_SCRIPTS_NAME.DATE_PICKER_LIBRARY,
+    version: "0.0.1",
+    location: "header",
+    hosted: true,
+    hostedLocation:
+      "https://cdn.jsdelivr.net/npm/@easepick/bundle@1.2.1/dist/index.umd.min.js",
+    integrityHash:
+      "sha384-oKYezrjoEX7xfz/eWS+gHGOP2nKLIhFfYGP9FSeKwNIdHv/zQ+slB1d3YbDYoLvu",
   },
 };
