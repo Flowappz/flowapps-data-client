@@ -56,6 +56,36 @@ const getSitesList = async (accessToken: string): Promise<WebflowSite[]> => {
   return sites;
 };
 
+const registerHostedScript = async (
+  siteId: string,
+  accessToken: string,
+  scriptConfig: ScriptConfig,
+): Promise<WebflowCustomScript> => {
+  const { displayName, version, hostedLocation, integrityHash } = scriptConfig;
+
+  const { status, script } = await checkScriptRegistrationStatus(
+    siteId,
+    accessToken,
+    scriptConfig,
+  );
+
+  if (status && script) {
+    return script;
+  }
+
+  const { data } = await webflow(accessToken).post(
+    `/sites/${siteId}/registered_scripts/hosted`,
+    {
+      displayName,
+      version,
+      hostedLocation,
+      integrityHash,
+    },
+  );
+
+  return data;
+};
+
 const registerScript = async (
   siteId: string,
   accessToken: string,
@@ -185,6 +215,7 @@ const webflowClient = {
   getListOfRegisteredScripts,
   registerScript,
   checkScriptRegistrationStatus,
+  registerHostedScript,
 };
 
 export default webflowClient;
