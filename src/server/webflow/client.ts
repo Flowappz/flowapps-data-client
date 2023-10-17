@@ -187,7 +187,7 @@ const registerAndAddCustomCode = async (
     ],
   });
 
-  return data.scripts[0];
+  return data.scripts.reverse()[0];
 };
 
 const deleteCustomCode = async (
