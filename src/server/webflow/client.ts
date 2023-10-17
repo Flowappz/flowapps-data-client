@@ -86,22 +86,12 @@ const registerHostedScript = async (
   return data;
 };
 
-const registerScript = async (
+const registerInlineScript = async (
   siteId: string,
   accessToken: string,
   scriptConfig: ScriptConfig,
 ): Promise<WebflowCustomScript> => {
   const { displayName, version, path: scriptPath } = scriptConfig;
-
-  const { status, script } = await checkScriptRegistrationStatus(
-    siteId,
-    accessToken,
-    scriptConfig,
-  );
-
-  if (status && script) {
-    return script;
-  }
 
   const sourceCode = await fs.readFile(
     path.join(process.cwd(), scriptPath as string),
@@ -120,6 +110,24 @@ const registerScript = async (
   );
 
   return data;
+};
+
+const registerScript = async (
+  siteId: string,
+  accessToken: string,
+  scriptConfig: ScriptConfig,
+): Promise<WebflowCustomScript> => {
+  const { status, script } = await checkScriptRegistrationStatus(
+    siteId,
+    accessToken,
+    scriptConfig,
+  );
+
+  if (status && script) {
+    return script;
+  }
+
+  return registerInlineScript(siteId, accessToken, scriptConfig);
 };
 
 const checkScriptRegistrationStatus = async (
