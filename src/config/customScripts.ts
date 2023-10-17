@@ -3,6 +3,9 @@ export type ScriptConfig = {
   version: string;
   path: string;
   location: "header" | "footer";
+  hosted?: boolean;
+  hostedLocation?: string;
+  integrityHash?: string;
 };
 
 export const CUSTOM_SCRIPTS_BASE_FILE_PATH = "/src/server/webflow/scripts";
