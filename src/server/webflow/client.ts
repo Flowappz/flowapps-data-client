@@ -127,6 +127,9 @@ const registerScript = async (
     return script;
   }
 
+  if (scriptConfig.hosted)
+    return registerHostedScript(siteId, accessToken, scriptConfig);
+  
   return registerInlineScript(siteId, accessToken, scriptConfig);
 };
 
