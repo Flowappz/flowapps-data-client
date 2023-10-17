@@ -14,6 +14,7 @@ export const CUSTOM_SCRIPTS_NAME = {
   TEST: "test script",
   DROPDOWN: "dropdown",
   DATE_PICKER_LIBRARY: "date picker library",
+  DATE_PICKER_SCRIPT: "date picker script",
 } as const;
 
 type scriptKeys = keyof typeof CUSTOM_SCRIPTS_NAME;
@@ -45,5 +46,12 @@ export const CUSTOM_SCRIPTS_CONFIG: {
       "https://cdn.jsdelivr.net/npm/@easepick/bundle@1.2.1/dist/index.umd.min.js",
     integrityHash:
       "sha384-oKYezrjoEX7xfz/eWS+gHGOP2nKLIhFfYGP9FSeKwNIdHv/zQ+slB1d3YbDYoLvu",
+  },
+
+  [CUSTOM_SCRIPTS_NAME.DATE_PICKER_SCRIPT]: {
+    displayName: CUSTOM_SCRIPTS_NAME.DATE_PICKER_SCRIPT,
+    version: "0.0.0",
+    location: "footer",
+    path: `${CUSTOM_SCRIPTS_BASE_FILE_PATH}/minified/date-picker.min.js`,
   },
 };
