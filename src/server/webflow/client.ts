@@ -73,9 +73,12 @@ const registerScript = async (
     return script;
   }
 
-  const sourceCode = await fs.readFile(path.join(process.cwd(), scriptPath), {
-    encoding: "utf-8",
-  });
+  const sourceCode = await fs.readFile(
+    path.join(process.cwd(), scriptPath as string),
+    {
+      encoding: "utf-8",
+    },
+  );
 
   const { data } = await webflow(accessToken).post(
     `/sites/${siteId}/registered_scripts/inline`,
