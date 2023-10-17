@@ -50,7 +50,7 @@ export const CUSTOM_SCRIPTS_CONFIG: {
 
   [CUSTOM_SCRIPTS_NAME.DATE_PICKER_SCRIPT]: {
     displayName: CUSTOM_SCRIPTS_NAME.DATE_PICKER_SCRIPT,
-    version: "0.0.1",
+    version: "0.0.2",
     location: "footer",
     path: `${CUSTOM_SCRIPTS_BASE_FILE_PATH}/minified/date-picker.min.js`,
   },
