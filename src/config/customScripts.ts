@@ -39,8 +39,8 @@ export const CUSTOM_SCRIPTS_CONFIG: {
 
   [CUSTOM_SCRIPTS_NAME.DATE_PICKER_LIBRARY]: {
     displayName: CUSTOM_SCRIPTS_NAME.DATE_PICKER_LIBRARY,
-    version: "0.0.1",
-    location: "header",
+    version: "0.0.2",
+    location: "footer",
     hosted: true,
     hostedLocation:
       "https://cdn.jsdelivr.net/npm/@easepick/bundle@1.2.1/dist/index.umd.min.js",
