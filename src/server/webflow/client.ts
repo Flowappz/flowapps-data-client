@@ -169,10 +169,16 @@ const registerAndAddCustomCode = async (
     scriptConfig,
   );
 
+  const listOfPreviouslyAddedCode = await getListOfCustomCodes(
+    siteId,
+    accessToken,
+  );
+
   const client = webflow(accessToken);
 
   const { data } = await client.put(`/sites/${siteId}/custom_code`, {
     scripts: [
+      ...listOfPreviouslyAddedCode.filter((code) => code.id !== id),
       {
         id,
         version,
@@ -199,11 +205,11 @@ const getListOfCustomCodes = async (
   siteId: string,
   accessToken: string,
 ): Promise<WebflowCustomCode[]> => {
-  const { data } = await webflow(accessToken).get(
-    `/sites/${siteId}/custom_code`,
-  );
+  const {
+    data: { scripts },
+  } = await webflow(accessToken).get(`/sites/${siteId}/custom_code`);
 
-  return data;
+  return scripts;
 };
 
 const getListOfRegisteredScripts = async (
