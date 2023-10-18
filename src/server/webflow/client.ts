@@ -56,12 +56,12 @@ const getSitesList = async (accessToken: string): Promise<WebflowSite[]> => {
   return sites;
 };
 
-const registerScript = async (
+const registerHostedScript = async (
   siteId: string,
   accessToken: string,
   scriptConfig: ScriptConfig,
 ): Promise<WebflowCustomScript> => {
-  const { displayName, version, path: scriptPath } = scriptConfig;
+  const { displayName, version, hostedLocation, integrityHash } = scriptConfig;
 
   const { status, script } = await checkScriptRegistrationStatus(
     siteId,
@@ -73,9 +73,32 @@ const registerScript = async (
     return script;
   }
 
-  const sourceCode = await fs.readFile(path.join(process.cwd(), scriptPath), {
-    encoding: "utf-8",
-  });
+  const { data } = await webflow(accessToken).post(
+    `/sites/${siteId}/registered_scripts/hosted`,
+    {
+      displayName,
+      version,
+      hostedLocation,
+      integrityHash,
+    },
+  );
+
+  return data;
+};
+
+const registerInlineScript = async (
+  siteId: string,
+  accessToken: string,
+  scriptConfig: ScriptConfig,
+): Promise<WebflowCustomScript> => {
+  const { displayName, version, path: scriptPath } = scriptConfig;
+
+  const sourceCode = await fs.readFile(
+    path.join(process.cwd(), scriptPath as string),
+    {
+      encoding: "utf-8",
+    },
+  );
 
   const { data } = await webflow(accessToken).post(
     `/sites/${siteId}/registered_scripts/inline`,
@@ -87,6 +110,27 @@ const registerScript = async (
   );
 
   return data;
+};
+
+const registerScript = async (
+  siteId: string,
+  accessToken: string,
+  scriptConfig: ScriptConfig,
+): Promise<WebflowCustomScript> => {
+  const { status, script } = await checkScriptRegistrationStatus(
+    siteId,
+    accessToken,
+    scriptConfig,
+  );
+
+  if (status && script) {
+    return script;
+  }
+
+  if (scriptConfig.hosted)
+    return registerHostedScript(siteId, accessToken, scriptConfig);
+  
+  return registerInlineScript(siteId, accessToken, scriptConfig);
 };
 
 const checkScriptRegistrationStatus = async (
@@ -125,10 +169,16 @@ const registerAndAddCustomCode = async (
     scriptConfig,
   );
 
+  const listOfPreviouslyAddedCode = await getListOfCustomCodes(
+    siteId,
+    accessToken,
+  );
+
   const client = webflow(accessToken);
 
   const { data } = await client.put(`/sites/${siteId}/custom_code`, {
     scripts: [
+      ...listOfPreviouslyAddedCode.filter((code) => code.id !== id),
       {
         id,
         version,
@@ -137,7 +187,7 @@ const registerAndAddCustomCode = async (
     ],
   });
 
-  return data.scripts[0];
+  return data.scripts.reverse()[0];
 };
 
 const deleteCustomCode = async (
@@ -155,11 +205,11 @@ const getListOfCustomCodes = async (
   siteId: string,
   accessToken: string,
 ): Promise<WebflowCustomCode[]> => {
-  const { data } = await webflow(accessToken).get(
-    `/sites/${siteId}/custom_code`,
-  );
+  const {
+    data: { scripts },
+  } = await webflow(accessToken).get(`/sites/${siteId}/custom_code`);
 
-  return data;
+  return scripts;
 };
 
 const getListOfRegisteredScripts = async (
@@ -182,6 +232,7 @@ const webflowClient = {
   getListOfRegisteredScripts,
   registerScript,
   checkScriptRegistrationStatus,
+  registerHostedScript,
 };
 
 export default webflowClient;
