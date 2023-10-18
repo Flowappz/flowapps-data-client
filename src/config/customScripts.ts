@@ -58,7 +58,7 @@ export const CUSTOM_SCRIPTS_CONFIG: {
 
   [CUSTOM_SCRIPTS_NAME.DATE_RANGE_SCRIPT]: {
     displayName: CUSTOM_SCRIPTS_NAME.DATE_RANGE_SCRIPT,
-    version: "0.0.2",
+    version: "0.0.1",
     location: "footer",
     path: `${CUSTOM_SCRIPTS_BASE_FILE_PATH}/minified/date-range.min.js`,
   },
