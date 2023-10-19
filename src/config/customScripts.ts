@@ -15,6 +15,7 @@ export const CUSTOM_SCRIPTS_NAME = {
   DROPDOWN: "dropdown",
   DATE_PICKER_LIBRARY: "date picker library",
   DATE_PICKER_SCRIPT: "date picker script",
+  DATE_RANGE_SCRIPT: "date range script",
 } as const;
 
 type scriptKeys = keyof typeof CUSTOM_SCRIPTS_NAME;
@@ -53,5 +54,12 @@ export const CUSTOM_SCRIPTS_CONFIG: {
     version: "0.0.2",
     location: "footer",
     path: `${CUSTOM_SCRIPTS_BASE_FILE_PATH}/minified/date-picker.min.js`,
+  },
+
+  [CUSTOM_SCRIPTS_NAME.DATE_RANGE_SCRIPT]: {
+    displayName: CUSTOM_SCRIPTS_NAME.DATE_RANGE_SCRIPT,
+    version: "0.0.1",
+    location: "footer",
+    path: `${CUSTOM_SCRIPTS_BASE_FILE_PATH}/minified/date-range.min.js`,
   },
 };
