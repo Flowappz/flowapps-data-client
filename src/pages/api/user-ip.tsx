@@ -1,3 +1,4 @@
+import { addCorsHeader } from "@/utils/cors";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -7,6 +8,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       (req.headers["x-forwarded-for"] as string)?.split(",")[0] ||
       "Unknown";
 
+    addCorsHeader(res);
     res.status(200).json({ ip });
   } catch (err) {
     console.log(`Error in '/api/user-ip' endpoint: `, err);
