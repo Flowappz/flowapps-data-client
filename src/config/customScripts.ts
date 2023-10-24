@@ -11,13 +11,13 @@ export type ScriptConfig = {
 export const CUSTOM_SCRIPTS_BASE_FILE_PATH = "/src/server/webflow/scripts";
 
 export const CUSTOM_SCRIPTS_NAME = {
-  TEST: "test script",
+  // TEST: "test script",
   DROPDOWN: "dropdown",
   DATE_PICKER_LIBRARY: "date picker library",
   DATE_PICKER_SCRIPT: "date picker script",
   DATE_RANGE_SCRIPT: "date range script",
   USER_IP_SCRIPT: "user ip script",
-  NUMBER_SLIDER_LIBRARY: "number slider library",
+  // NUMBER_SLIDER_LIBRARY: "number slider library",
   NUMBER_SLIDER_SCRIPT: "number slider script",
 } as const;
 
@@ -27,12 +27,12 @@ export type customScriptName = (typeof CUSTOM_SCRIPTS_NAME)[scriptKeys];
 export const CUSTOM_SCRIPTS_CONFIG: {
   [key in customScriptName]: ScriptConfig;
 } = {
-  [CUSTOM_SCRIPTS_NAME.TEST]: {
-    version: "0.0.1",
-    path: `${CUSTOM_SCRIPTS_BASE_FILE_PATH}/test.js`,
-    displayName: CUSTOM_SCRIPTS_NAME.TEST,
-    location: "footer",
-  },
+  // [CUSTOM_SCRIPTS_NAME.TEST]: {
+  //   version: "0.0.1",
+  //   path: `${CUSTOM_SCRIPTS_BASE_FILE_PATH}/test.js`,
+  //   displayName: CUSTOM_SCRIPTS_NAME.TEST,
+  //   location: "footer",
+  // },
 
   [CUSTOM_SCRIPTS_NAME.DROPDOWN]: {
     displayName: CUSTOM_SCRIPTS_NAME.DROPDOWN,
@@ -73,16 +73,16 @@ export const CUSTOM_SCRIPTS_CONFIG: {
     path: `${CUSTOM_SCRIPTS_BASE_FILE_PATH}/minified/user-ip.min.js`,
   },
 
-  [CUSTOM_SCRIPTS_NAME.NUMBER_SLIDER_LIBRARY]: {
-    displayName: CUSTOM_SCRIPTS_NAME.NUMBER_SLIDER_LIBRARY,
-    version: "0.0.0",
-    location: "footer",
-    hosted: true,
-    hostedLocation:
-      "https://slawomir-zaziablo.github.io/range-slider/js/rSlider.min.js",
-    integrityHash:
-      "sha384-5PDPoHRaooINUDyIdI+MrfgdsufjNHnuUcHb1oB/d0ct57S8L1nyWl8BeXPYdVu+",
-  },
+  // [CUSTOM_SCRIPTS_NAME.NUMBER_SLIDER_LIBRARY]: {
+  //   displayName: CUSTOM_SCRIPTS_NAME.NUMBER_SLIDER_LIBRARY,
+  //   version: "0.0.0",
+  //   location: "footer",
+  //   hosted: true,
+  //   hostedLocation:
+  //     "https://slawomir-zaziablo.github.io/range-slider/js/rSlider.min.js",
+  //   integrityHash:
+  //     "sha384-5PDPoHRaooINUDyIdI+MrfgdsufjNHnuUcHb1oB/d0ct57S8L1nyWl8BeXPYdVu+",
+  // },
 
   [CUSTOM_SCRIPTS_NAME.NUMBER_SLIDER_SCRIPT]: {
     displayName: CUSTOM_SCRIPTS_NAME.NUMBER_SLIDER_SCRIPT,
