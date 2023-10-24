@@ -15,6 +15,22 @@ window.formFieldsNumberSlider = async () => {
     }
   };
 
+  const addNumberSliderPackage = async () => {
+    const res = await fetch(
+      "https://slawomir-zaziablo.github.io/range-slider/js/rSlider.min.js",
+    );
+    if (res.ok) {
+      const code = await res.text();
+      const script = document.createElement("script");
+      script.text = code;
+      script.type = "text/javascript";
+
+      script.setAttribute("form-fields-number-slider-package", "true");
+
+      document.getElementsByTagName("head")[0].appendChild(script);
+    }
+  };
+
   /**
    *
    * @param {Element} sliderInput
@@ -70,7 +86,8 @@ window.formFieldsNumberSlider = async () => {
     }
   };
 
-  await addNumberSliderCss();
+  await Promise.all([addNumberSliderCss(), addNumberSliderPackage()]);
+
   initializeTheSliders();
 };
 
