@@ -13,9 +13,9 @@ export const CUSTOM_SCRIPTS_BASE_FILE_PATH = "/src/server/webflow/scripts";
 export const CUSTOM_SCRIPTS_NAME = {
   // TEST: "test script",
   DROPDOWN: "dropdown",
-  DATE_PICKER_LIBRARY: "date picker library",
+  // DATE_PICKER_LIBRARY: "date picker library",
   DATE_PICKER_SCRIPT: "date picker script",
-  DATE_RANGE_SCRIPT: "date range script",
+  // DATE_RANGE_SCRIPT: "date range script",
   USER_IP_SCRIPT: "user ip script",
   // NUMBER_SLIDER_LIBRARY: "number slider library",
   NUMBER_SLIDER_SCRIPT: "number slider script",
@@ -41,16 +41,16 @@ export const CUSTOM_SCRIPTS_CONFIG: {
     path: `${CUSTOM_SCRIPTS_BASE_FILE_PATH}/minified/dropdown.min.js`,
   },
 
-  [CUSTOM_SCRIPTS_NAME.DATE_PICKER_LIBRARY]: {
-    displayName: CUSTOM_SCRIPTS_NAME.DATE_PICKER_LIBRARY,
-    version: "0.0.2",
-    location: "footer",
-    hosted: true,
-    hostedLocation:
-      "https://cdn.jsdelivr.net/npm/@easepick/bundle@1.2.1/dist/index.umd.min.js",
-    integrityHash:
-      "sha384-oKYezrjoEX7xfz/eWS+gHGOP2nKLIhFfYGP9FSeKwNIdHv/zQ+slB1d3YbDYoLvu",
-  },
+  // [CUSTOM_SCRIPTS_NAME.DATE_PICKER_LIBRARY]: {
+  //   displayName: CUSTOM_SCRIPTS_NAME.DATE_PICKER_LIBRARY,
+  //   version: "0.0.2",
+  //   location: "footer",
+  //   hosted: true,
+  //   hostedLocation:
+  //     "https://cdn.jsdelivr.net/npm/@easepick/bundle@1.2.1/dist/index.umd.min.js",
+  //   integrityHash:
+  //     "sha384-oKYezrjoEX7xfz/eWS+gHGOP2nKLIhFfYGP9FSeKwNIdHv/zQ+slB1d3YbDYoLvu",
+  // },
 
   [CUSTOM_SCRIPTS_NAME.DATE_PICKER_SCRIPT]: {
     displayName: CUSTOM_SCRIPTS_NAME.DATE_PICKER_SCRIPT,
@@ -59,12 +59,12 @@ export const CUSTOM_SCRIPTS_CONFIG: {
     path: `${CUSTOM_SCRIPTS_BASE_FILE_PATH}/minified/date-picker.min.js`,
   },
 
-  [CUSTOM_SCRIPTS_NAME.DATE_RANGE_SCRIPT]: {
-    displayName: CUSTOM_SCRIPTS_NAME.DATE_RANGE_SCRIPT,
-    version: "0.0.1",
-    location: "footer",
-    path: `${CUSTOM_SCRIPTS_BASE_FILE_PATH}/minified/date-range.min.js`,
-  },
+  // [CUSTOM_SCRIPTS_NAME.DATE_RANGE_SCRIPT]: {
+  //   displayName: CUSTOM_SCRIPTS_NAME.DATE_RANGE_SCRIPT,
+  //   version: "0.0.1",
+  //   location: "footer",
+  //   path: `${CUSTOM_SCRIPTS_BASE_FILE_PATH}/minified/date-range.min.js`,
+  // },
 
   [CUSTOM_SCRIPTS_NAME.USER_IP_SCRIPT]: {
     displayName: CUSTOM_SCRIPTS_NAME.USER_IP_SCRIPT,
