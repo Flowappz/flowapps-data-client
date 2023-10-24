@@ -18,6 +18,7 @@ export const CUSTOM_SCRIPTS_NAME = {
   DATE_RANGE_SCRIPT: "date range script",
   USER_IP_SCRIPT: "user ip script",
   NUMBER_SLIDER_LIBRARY: "number slider library",
+  NUMBER_SLIDER_SCRIPT: "number slider script",
 } as const;
 
 type scriptKeys = keyof typeof CUSTOM_SCRIPTS_NAME;
@@ -81,5 +82,12 @@ export const CUSTOM_SCRIPTS_CONFIG: {
       "https://slawomir-zaziablo.github.io/range-slider/js/rSlider.min.js",
     integrityHash:
       "sha384-5PDPoHRaooINUDyIdI+MrfgdsufjNHnuUcHb1oB/d0ct57S8L1nyWl8BeXPYdVu+",
+  },
+
+  [CUSTOM_SCRIPTS_NAME.NUMBER_SLIDER_SCRIPT]: {
+    displayName: CUSTOM_SCRIPTS_NAME.NUMBER_SLIDER_SCRIPT,
+    version: "0.0.0",
+    location: "footer",
+    path: `${CUSTOM_SCRIPTS_BASE_FILE_PATH}/minified/range-slider.min.js`,
   },
 };
