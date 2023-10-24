@@ -158,6 +158,17 @@ const checkScriptRegistrationStatus = async (
   return { status: false };
 };
 
+const listOfPreviouslyAddedCode = async (
+  siteId: string,
+  accessToken: string,
+) => {
+  try {
+    return await getListOfCustomCodes(siteId, accessToken);
+  } catch (err) {
+    return [];
+  }
+};
+
 const registerAndAddCustomCode = async (
   siteId: string,
   accessToken: string,
@@ -169,16 +180,13 @@ const registerAndAddCustomCode = async (
     scriptConfig,
   );
 
-  const listOfPreviouslyAddedCode = await getListOfCustomCodes(
-    siteId,
-    accessToken,
-  );
+  const prevCodeList = await listOfPreviouslyAddedCode(siteId, accessToken);
 
   const client = webflow(accessToken);
 
   const { data } = await client.put(`/sites/${siteId}/custom_code`, {
     scripts: [
-      ...listOfPreviouslyAddedCode.filter((code) => code.id !== id),
+      ...prevCodeList.filter((code) => code.id !== id),
       {
         id,
         version,
