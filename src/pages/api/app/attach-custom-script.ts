@@ -24,11 +24,17 @@ export default async function handler(
 
     if (webflowSite && webflowSite.user) {
       for (let script in CUSTOM_SCRIPTS_CONFIG) {
+        console.log(
+          `Registering ${
+            CUSTOM_SCRIPTS_CONFIG[script as customScriptName].displayName
+          } to site ${siteId}`,
+        );
         await webflowClient.registerAndAddCustomCode(
           siteId,
           webflowSite.user.accessToken,
           CUSTOM_SCRIPTS_CONFIG[script as customScriptName],
         );
+        console.log("Done!");
       }
 
       res.status(200).json({ siteId, status: "OK" });
