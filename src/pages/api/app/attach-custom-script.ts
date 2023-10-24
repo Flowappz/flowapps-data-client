@@ -36,7 +36,7 @@ export default async function handler(
       res.status(400).json({ message: "Site isn't found!" });
     }
   } catch (err: any) {
-    console.log("Error in /api/app/attach-custom-script", err);
+    console.log("Error in /api/app/attach-custom-script", err.response.data);
 
     res.status(500).json(err.response.data);
   }
