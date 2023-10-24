@@ -9,7 +9,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 interface AttachCustomScriptRequest extends NextApiRequest {
   body: {
     siteId: string;
-    scriptName: customScriptName;
+    // scriptName: customScriptName;
   };
 }
 
@@ -18,18 +18,20 @@ export default async function handler(
   res: NextApiResponse<any>,
 ) {
   try {
-    const { siteId, scriptName } = req.body;
+    const { siteId } = req.body;
 
     const webflowSite = await siteService.getSiteByWebflowId(siteId);
 
     if (webflowSite && webflowSite.user) {
-      const script = await webflowClient.registerAndAddCustomCode(
-        siteId,
-        webflowSite.user.accessToken,
-        CUSTOM_SCRIPTS_CONFIG[scriptName],
-      );
+      for (let script in CUSTOM_SCRIPTS_CONFIG) {
+        await webflowClient.registerAndAddCustomCode(
+          siteId,
+          webflowSite.user.accessToken,
+          CUSTOM_SCRIPTS_CONFIG[script as customScriptName],
+        );
+      }
 
-      res.status(200).json({ siteId, status: "OK", script });
+      res.status(200).json({ siteId, status: "OK" });
     } else {
       res.status(400).json({ message: "Site isn't found!" });
     }
