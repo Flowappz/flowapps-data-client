@@ -12,6 +12,7 @@ export const CUSTOM_SCRIPTS_BASE_FILE_PATH = "/src/server/webflow/scripts";
 
 export const CUSTOM_SCRIPTS_NAME = {
   DROPDOWN: "dropdown",
+  DROPDOWN_SHOW_HIDE: "dropdown show hide",
   DATE_PICKER_SCRIPT: "date picker script",
   USER_IP_SCRIPT: "user ip script",
   NUMBER_SLIDER_SCRIPT: "number slider script",
@@ -25,9 +26,16 @@ export const CUSTOM_SCRIPTS_CONFIG: {
 } = {
   [CUSTOM_SCRIPTS_NAME.DROPDOWN]: {
     displayName: CUSTOM_SCRIPTS_NAME.DROPDOWN,
-    version: "0.0.54",
+    version: "0.0.55",
     location: "footer",
     path: `${CUSTOM_SCRIPTS_BASE_FILE_PATH}/minified/dropdown.min.js`,
+  },
+
+  [CUSTOM_SCRIPTS_NAME.DROPDOWN_SHOW_HIDE]: {
+    displayName: CUSTOM_SCRIPTS_NAME.DROPDOWN_SHOW_HIDE,
+    version: "0.0.0",
+    location: "footer",
+    path: `${CUSTOM_SCRIPTS_BASE_FILE_PATH}/minified/dropdown-show-hide.min.js`,
   },
 
   [CUSTOM_SCRIPTS_NAME.DATE_PICKER_SCRIPT]: {
