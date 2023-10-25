@@ -110,6 +110,10 @@ window.formFieldsDropdown = () => {
         } else if (name && DROPDOWN_LISTS[name].style.display === "block") {
           DROPDOWN_LISTS[name].style.display = "none";
         }
+
+        Object.keys(DROPDOWN_TOGGLERS)
+          .filter((k) => k !== key)
+          .map((k) => (DROPDOWN_LISTS[k].style.display = "none"));
       });
     }
   }
