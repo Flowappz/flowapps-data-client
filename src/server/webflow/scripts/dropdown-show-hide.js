@@ -88,6 +88,15 @@ window.showHideDropdown = () => {
     }
   }
 
+  function selectDropdownLists() {
+    const dropdownLists = document.querySelectorAll(selectors.DROPDOWN_LIST);
+
+    for (let list of dropdownLists) {
+      const name = list.getAttribute(togglerAttributes.NAME);
+      DROPDOWN_LISTS[name] = list;
+    }
+  }
+
   function selectSearchableItems() {
     const items = getDropdownItems();
 
@@ -106,9 +115,11 @@ window.showHideDropdown = () => {
     const inputKeys = Object.keys(SEARCHABLE_DROPDOWN_TOGGLERS);
 
     for (let key of inputKeys) {
-      DROPDOWN_INPUTS[key].addEventListener("click", (e) =>
-        e.stopPropagation(),
-      );
+      DROPDOWN_INPUTS[key].addEventListener("click", (e) => {
+        if (DROPDOWN_LISTS[key].style.display === "block") {
+          e.stopPropagation();
+        }
+      });
 
       DROPDOWN_INPUTS[key].addEventListener("input", (e) => {
         const val = e.target.value;
@@ -145,6 +156,7 @@ window.showHideDropdown = () => {
   };
 
   selectDropdownTogglers();
+  selectDropdownLists();
   selectDropdownInputs();
   selectSearchableItems();
   filterItemsOnInputChange();
