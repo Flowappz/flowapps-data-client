@@ -97,14 +97,16 @@ window.formFieldsDropdown = () => {
     return document.querySelectorAll(selectors.DROPDOWN_ITEM);
   }
 
-  function showListItemsOnTogglerClick() {
+  function showHideListItemsOnTogglerClick() {
     for (let key in DROPDOWN_TOGGLERS) {
       const toggler = DROPDOWN_TOGGLERS[key];
       toggler.addEventListener("click", () => {
         const name = toggler.getAttribute(togglerAttributes.NAME);
 
-        if (name) {
+        if (name && DROPDOWN_LISTS[name].style.display !== "block") {
           DROPDOWN_LISTS[name].style.display = "block";
+        } else if (name && DROPDOWN_LISTS[name].style.display === "block") {
+          DROPDOWN_LISTS[name].style.display = "none";
         }
       });
     }
@@ -167,7 +169,7 @@ window.formFieldsDropdown = () => {
   }
 
   function makeTheDropdownsInteractive() {
-    showListItemsOnTogglerClick();
+    showHideListItemsOnTogglerClick();
     setInputValueOnItemClick();
     filterItemsOnInputChange();
   }
