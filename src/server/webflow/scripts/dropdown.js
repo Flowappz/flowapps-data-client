@@ -18,6 +18,10 @@ window.formFieldsDropdown = () => {
     INPUT_DATA: "input-data",
   };
 
+  function closest(e, t) {
+    return !e ? false : e === t ? true : closest(e.parentNode, t);
+  }
+
   /**
    * @type {{[k: string]: HTMLElement}}
    */
@@ -100,7 +104,9 @@ window.formFieldsDropdown = () => {
   function showHideListItemsOnTogglerClick() {
     for (let key in DROPDOWN_TOGGLERS) {
       const toggler = DROPDOWN_TOGGLERS[key];
-      toggler.addEventListener("click", () => {
+      toggler.addEventListener("click", (e) => {
+        e.stopPropagation();
+
         const name = toggler.getAttribute(togglerAttributes.NAME);
 
         if (name && DROPDOWN_LISTS[name].style.display !== "block") {
@@ -111,6 +117,18 @@ window.formFieldsDropdown = () => {
       });
     }
   }
+
+  const hideDropdownOnOutsideClick = () => {
+    const lists = document.querySelectorAll("[form-field-dropdown-item-list]");
+    for (let list of lists) {
+      list.addEventListener("click", (e) => e.stopPropagation());
+      document.body.addEventListener("click", function (e) {
+        if (!closest(e.target, list)) {
+          list.style.display = "none";
+        }
+      });
+    }
+  };
 
   function setInputValueOnItemClick() {
     const dropdownItems = getDropdownItems();
@@ -172,6 +190,7 @@ window.formFieldsDropdown = () => {
     showHideListItemsOnTogglerClick();
     setInputValueOnItemClick();
     filterItemsOnInputChange();
+    hideDropdownOnOutsideClick();
   }
 
   selectDropdownTogglers();
