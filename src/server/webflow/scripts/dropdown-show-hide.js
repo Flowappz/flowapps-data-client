@@ -7,6 +7,7 @@ window.showHideDropdown = () => {
     DROPDOWN_LIST: "[form-field-dropdown-item-list]",
     DROPDOWN_TOGGLERS_SELECTED_VALUE:
       "[form-field-dropdown-toggler-selected-value]",
+    NO_DATA_FOUND: "[form-field-searchable-dropdown-no-item-found]",
   };
 
   const togglerAttributes = {
@@ -48,6 +49,11 @@ window.showHideDropdown = () => {
    */
   const DROPDOWN_INPUTS = {};
 
+  /**
+   * @type {{[k: string]: HTMLInputElement}}
+   */
+  const NO_DATA_FOUND = {};
+
   function selectDropdownTogglers() {
     const togglers = document.querySelectorAll(selectors.DROPDOWN_TOGGLER);
 
@@ -72,6 +78,14 @@ window.showHideDropdown = () => {
     for (let searchableToggler of searchableTogglers) {
       const name = searchableToggler.getAttribute(togglerAttributes.NAME);
       SEARCHABLE_DROPDOWN_TOGGLERS[name] = searchableToggler;
+    }
+  }
+
+  function selectNoDataFound() {
+    const noDataMessages = document.querySelectorAll(selectors.NO_DATA_FOUND);
+    for (let noData of noDataMessages) {
+      const name = noData.getAttribute(togglerAttributes.NAME);
+      NO_DATA_FOUND[name] = noData;
     }
   }
 
@@ -125,11 +139,16 @@ window.showHideDropdown = () => {
         const val = e.target.value;
 
         if (val.trim()) {
+          let count = 0;
           for (let item of SEARCHABLE_DROPDOWN_LIST_ITEMS[key]) {
             if (item.innerText.toLowerCase().includes(val.toLowerCase())) {
               item.style.display = "block";
+              count++;
             } else item.style.display = "none";
           }
+          if (count === 0) {
+            NO_DATA_FOUND[key].style.display = "block";
+          } else NO_DATA_FOUND[key].style.display = "none";
         } else {
           for (let item of SEARCHABLE_DROPDOWN_LIST_ITEMS[key]) {
             item.style.display = "block";
@@ -158,6 +177,7 @@ window.showHideDropdown = () => {
   selectDropdownTogglers();
   selectDropdownLists();
   selectDropdownInputs();
+  selectNoDataFound();
   selectSearchableItems();
   filterItemsOnInputChange();
   hideDropdownOnOutsideClick();
