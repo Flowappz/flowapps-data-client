@@ -54,75 +54,61 @@ window.showHideDropdown = () => {
    */
   const NO_DATA_FOUND = {};
 
-  function selectDropdownTogglers() {
-    const togglers = document.querySelectorAll(selectors.DROPDOWN_TOGGLER);
+  const togglers = document.querySelectorAll(selectors.DROPDOWN_TOGGLER);
 
-    for (let toggler of togglers) {
-      const name = toggler.getAttribute(togglerAttributes.NAME);
-      DROPDOWN_TOGGLERS[name] = toggler;
-    }
-
-    const selectedValueLabelForRegularDropdown = document.querySelectorAll(
-      selectors.DROPDOWN_TOGGLERS_SELECTED_VALUE,
-    );
-
-    for (let selectedValueLabel of selectedValueLabelForRegularDropdown) {
-      const name = selectedValueLabel.getAttribute(togglerAttributes.NAME);
-      DROPDOWN_TOGGLERS_SELECTED_VALUE[name] = selectedValueLabel;
-    }
-
-    const searchableTogglers = document.querySelectorAll(
-      selectors.SEARCHABLE_DROPDOWN_TOGGLER,
-    );
-
-    for (let searchableToggler of searchableTogglers) {
-      const name = searchableToggler.getAttribute(togglerAttributes.NAME);
-      SEARCHABLE_DROPDOWN_TOGGLERS[name] = searchableToggler;
-    }
+  for (let toggler of togglers) {
+    const name = toggler.getAttribute(togglerAttributes.NAME);
+    DROPDOWN_TOGGLERS[name] = toggler;
   }
 
-  function selectNoDataFound() {
-    const noDataMessages = document.querySelectorAll(selectors.NO_DATA_FOUND);
-    for (let noData of noDataMessages) {
-      const name = noData.getAttribute(togglerAttributes.NAME);
-      NO_DATA_FOUND[name] = noData;
-    }
+  const selectedValueLabelForRegularDropdown = document.querySelectorAll(
+    selectors.DROPDOWN_TOGGLERS_SELECTED_VALUE,
+  );
+
+  for (let selectedValueLabel of selectedValueLabelForRegularDropdown) {
+    const name = selectedValueLabel.getAttribute(togglerAttributes.NAME);
+    DROPDOWN_TOGGLERS_SELECTED_VALUE[name] = selectedValueLabel;
   }
 
-  function getDropdownItems() {
-    return document.querySelectorAll(selectors.DROPDOWN_ITEM);
+  const searchableTogglers = document.querySelectorAll(
+    selectors.SEARCHABLE_DROPDOWN_TOGGLER,
+  );
+
+  for (let searchableToggler of searchableTogglers) {
+    const name = searchableToggler.getAttribute(togglerAttributes.NAME);
+    SEARCHABLE_DROPDOWN_TOGGLERS[name] = searchableToggler;
   }
 
-  function selectDropdownInputs() {
-    const inputs = document.querySelectorAll(selectors.DROPDOWN_INPUT);
-
-    for (let input of inputs) {
-      const name = input.getAttribute("name");
-      DROPDOWN_INPUTS[name] = input;
-    }
+  const noDataMessages = document.querySelectorAll(selectors.NO_DATA_FOUND);
+  for (let noData of noDataMessages) {
+    const name = noData.getAttribute(togglerAttributes.NAME);
+    NO_DATA_FOUND[name] = noData;
   }
 
-  function selectDropdownLists() {
-    const dropdownLists = document.querySelectorAll(selectors.DROPDOWN_LIST);
+  const inputs = document.querySelectorAll(selectors.DROPDOWN_INPUT);
 
-    for (let list of dropdownLists) {
-      const name = list.getAttribute(togglerAttributes.NAME);
-      DROPDOWN_LISTS[name] = list;
-    }
+  for (let input of inputs) {
+    const name = input.getAttribute("name");
+    DROPDOWN_INPUTS[name] = input;
   }
 
-  function selectSearchableItems() {
-    const items = getDropdownItems();
+  const dropdownLists = document.querySelectorAll(selectors.DROPDOWN_LIST);
 
-    for (let item of items) {
-      const inputName = item.getAttribute(togglerItemAttributes.INPUT_FIELD);
+  for (let list of dropdownLists) {
+    const name = list.getAttribute(togglerAttributes.NAME);
+    DROPDOWN_LISTS[name] = list;
+  }
 
-      if (!SEARCHABLE_DROPDOWN_TOGGLERS[inputName]) continue;
+  const items = document.querySelectorAll(selectors.DROPDOWN_ITEM);
 
-      if (inputName && SEARCHABLE_DROPDOWN_LIST_ITEMS[inputName]) {
-        SEARCHABLE_DROPDOWN_LIST_ITEMS[inputName].push(item);
-      } else if (inputName) SEARCHABLE_DROPDOWN_LIST_ITEMS[inputName] = [item];
-    }
+  for (let item of items) {
+    const inputName = item.getAttribute(togglerItemAttributes.INPUT_FIELD);
+
+    if (!SEARCHABLE_DROPDOWN_TOGGLERS[inputName]) continue;
+
+    if (inputName && SEARCHABLE_DROPDOWN_LIST_ITEMS[inputName]) {
+      SEARCHABLE_DROPDOWN_LIST_ITEMS[inputName].push(item);
+    } else if (inputName) SEARCHABLE_DROPDOWN_LIST_ITEMS[inputName] = [item];
   }
 
   function filterItemsOnInputChange() {
@@ -153,6 +139,7 @@ window.showHideDropdown = () => {
           for (let item of SEARCHABLE_DROPDOWN_LIST_ITEMS[key]) {
             item.style.display = "block";
           }
+          if (NO_DATA_FOUND[key]) NO_DATA_FOUND[key].style.display = "none";
         }
       });
     }
@@ -166,19 +153,18 @@ window.showHideDropdown = () => {
     const lists = document.querySelectorAll("[form-field-dropdown-item-list]");
     for (let list of lists) {
       list.addEventListener("click", (e) => e.stopPropagation());
+      const inputName = list.getAttribute(togglerAttributes.NAME);
       document.body.addEventListener("click", function (e) {
         if (!closest(e.target, list)) {
           list.style.display = "none";
+          if (NO_DATA_FOUND[inputName])
+            NO_DATA_FOUND[inputName].style.display = "none";
         }
       });
     }
   };
 
-  selectDropdownTogglers();
-  selectDropdownLists();
-  selectDropdownInputs();
-  selectNoDataFound();
-  selectSearchableItems();
+
   filterItemsOnInputChange();
   hideDropdownOnOutsideClick();
 };

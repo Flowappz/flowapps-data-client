@@ -33,7 +33,7 @@ export const CUSTOM_SCRIPTS_CONFIG: {
 
   [CUSTOM_SCRIPTS_NAME.DROPDOWN_SHOW_HIDE]: {
     displayName: CUSTOM_SCRIPTS_NAME.DROPDOWN_SHOW_HIDE,
-    version: "0.0.13",
+    version: "0.0.15",
     location: "footer",
     path: `${CUSTOM_SCRIPTS_BASE_FILE_PATH}/minified/dropdown-show-hide.min.js`,
   },
