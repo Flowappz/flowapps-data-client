@@ -26,14 +26,14 @@ export const CUSTOM_SCRIPTS_CONFIG: {
 } = {
   [CUSTOM_SCRIPTS_NAME.DROPDOWN]: {
     displayName: CUSTOM_SCRIPTS_NAME.DROPDOWN,
-    version: "0.0.55",
+    version: "0.0.56",
     location: "footer",
     path: `${CUSTOM_SCRIPTS_BASE_FILE_PATH}/minified/dropdown.min.js`,
   },
 
   [CUSTOM_SCRIPTS_NAME.DROPDOWN_SHOW_HIDE]: {
     displayName: CUSTOM_SCRIPTS_NAME.DROPDOWN_SHOW_HIDE,
-    version: "0.0.0",
+    version: "0.0.1",
     location: "footer",
     path: `${CUSTOM_SCRIPTS_BASE_FILE_PATH}/minified/dropdown-show-hide.min.js`,
   },
