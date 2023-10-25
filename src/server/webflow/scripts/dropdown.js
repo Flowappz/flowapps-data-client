@@ -5,6 +5,8 @@ window.formFieldsDropdown = () => {
     DROPDOWN_INPUT: "[form-field-dropdown-input]",
     DROPDOWN_ITEM: "[form-field-dropdown-item]",
     DROPDOWN_LIST: "[form-field-dropdown-item-list]",
+    DROPDOWN_TOGGLERS_SELECTED_VALUE:
+      "[form-field-dropdown-toggler-selected-value]",
   };
 
   const togglerAttributes = {
@@ -34,6 +36,11 @@ window.formFieldsDropdown = () => {
   /**
    * @type {{[k: string]: HTMLElement}}
    */
+  const DROPDOWN_TOGGLERS_SELECTED_VALUE = {};
+
+  /**
+   * @type {{[k: string]: HTMLElement}}
+   */
   const DROPDOWN_LISTS = {};
 
   /**
@@ -47,6 +54,15 @@ window.formFieldsDropdown = () => {
     for (let toggler of togglers) {
       const name = toggler.getAttribute(togglerAttributes.NAME);
       DROPDOWN_TOGGLERS[name] = toggler;
+    }
+
+    const selectedValueLabelForRegularDropdown = document.querySelectorAll(
+      selectors.DROPDOWN_TOGGLERS_SELECTED_VALUE,
+    );
+
+    for (let selectedValueLabel of selectedValueLabelForRegularDropdown) {
+      const name = selectedValueLabel.getAttribute(togglerAttributes.NAME);
+      DROPDOWN_TOGGLERS_SELECTED_VALUE[name] = selectedValueLabel;
     }
 
     const searchableTogglers = document.querySelectorAll(
@@ -106,7 +122,7 @@ window.formFieldsDropdown = () => {
           DROPDOWN_INPUTS[inputName].value = data;
 
           if (!SEARCHABLE_DROPDOWN_TOGGLERS[inputName])
-            DROPDOWN_TOGGLERS[inputName].innerHTML = data;
+            DROPDOWN_TOGGLERS_SELECTED_VALUE[inputName].innerHTML = data;
 
           DROPDOWN_LISTS[inputName].style.display = "none";
         }
