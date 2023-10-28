@@ -4,16 +4,41 @@ window.formFieldsDateInput = async () => {
     DATE_RANGE_PICKER: "[form-fields-pro-date-range-picker]",
   };
 
+  /**
+   *
+   * @param {Element} element
+   */
+  const getCommonConfig = (element) => {
+    const grid = Number(element.getAttribute("data-columns"));
+    const calendars = Number(element.getAttribute("data-months"));
+    const firstDay = Number(element.getAttribute("data-firstDay"));
+    const format = element.getAttribute("data-format");
+    const lang = element.getAttribute("data-language");
+    const zIndex = element.getAttribute("data-zIndex");
+
+    return {
+      element,
+      css: [
+        "https://cdn.jsdelivr.net/npm/@easepick/bundle@1.2.1/dist/index.css",
+      ],
+      grid,
+      calendars,
+      firstDay,
+      format,
+      lang,
+      zIndex,
+    };
+  };
+
   const initializeDatePickers = () => {
     const datePickers = document.querySelectorAll(selectors.DATE_PICKER);
 
     for (let datePicker of datePickers) {
+      const config = getCommonConfig(datePicker);
+      console.log("config: ", config);
       new easepick.create({
-        element: datePicker,
-        css: [
-          "https://cdn.jsdelivr.net/npm/@easepick/bundle@1.2.1/dist/index.css",
-        ],
-        zIndex: 10,
+        ...config,
+        date: new Date(),
       });
     }
   };
@@ -22,13 +47,15 @@ window.formFieldsDateInput = async () => {
     const datePickers = document.querySelectorAll(selectors.DATE_RANGE_PICKER);
 
     for (let datePicker of datePickers) {
+      const config = getCommonConfig(datePicker);
+      console.log("config: ", config);
       new easepick.create({
-        element: datePicker,
-        css: [
-          "https://cdn.jsdelivr.net/npm/@easepick/bundle@1.2.1/dist/index.css",
-        ],
-        zIndex: 10,
+        ...config,
         plugins: ["RangePlugin"],
+        RangePlugin: {
+          startDate: new Date(),
+          endDate: new Date(),
+        },
       });
     }
   };
