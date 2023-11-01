@@ -1,4 +1,21 @@
 window.formFieldsNumberSlider = async () => {
+  const additionalCss = `
+  .rs-noscale .rs-scale {
+    display: none;
+  }
+  .rs-scale {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .rs-scale span {
+    display: none;
+  }
+  .rs-scale span:first-child, .rs-scale span:last-child {
+    display: initial;
+  }
+  `;
+
   const addNumberSliderCss = async () => {
     const res = await fetch(
       `https://slawomir-zaziablo.github.io/range-slider/css/rSlider.min.css`,
@@ -7,9 +24,7 @@ window.formFieldsNumberSlider = async () => {
     if (res.ok) {
       const cssString = await res.text();
       const style = document.createElement("style");
-      style.innerHTML = `${cssString} .rs-noscale .rs-scale {
-        display: none;
-    }`;
+      style.innerHTML = `${cssString} ${additionalCss}`;
 
       document.getElementsByTagName("head")[0].appendChild(style);
     }
