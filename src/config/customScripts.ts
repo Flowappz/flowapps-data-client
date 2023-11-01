@@ -54,7 +54,7 @@ export const CUSTOM_SCRIPTS_CONFIG: {
 
   [CUSTOM_SCRIPTS_NAME.NUMBER_SLIDER_SCRIPT]: {
     displayName: CUSTOM_SCRIPTS_NAME.NUMBER_SLIDER_SCRIPT,
-    version: "0.0.1",
+    version: "0.0.2",
     location: "footer",
     path: `${CUSTOM_SCRIPTS_BASE_FILE_PATH}/minified/range-slider.min.js`,
   },
