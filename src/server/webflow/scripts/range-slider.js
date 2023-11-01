@@ -20,6 +20,9 @@ window.formFieldsNumberSlider = async () => {
   .form-fields-dropdown-item:hover {
     background: lightgray;
   }
+  [form-field-searchable-dropdown-no-item-found] .form-fields-dropdown-item:hover {
+    background: initial;
+  }
   `;
 
   const addNumberSliderCss = async () => {
