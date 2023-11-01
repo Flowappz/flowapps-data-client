@@ -60,7 +60,7 @@ window.formFieldsNumberSlider = async () => {
       values: { min, max },
       set: [defaultValue],
       range: false,
-      tooltip: false,
+      tooltip: true,
       scale: true,
       label: false,
       step: 1,
