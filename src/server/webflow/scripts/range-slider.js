@@ -14,6 +14,9 @@ window.formFieldsNumberSlider = async () => {
   .rs-scale span:first-child, .rs-scale span:last-child {
     display: initial;
   }
+  .rs-scale span::before {
+    display: none;
+  }
   `;
 
   const addNumberSliderCss = async () => {
