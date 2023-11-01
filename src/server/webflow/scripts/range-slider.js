@@ -17,6 +17,9 @@ window.formFieldsNumberSlider = async () => {
   .rs-scale span::before {
     display: none;
   }
+  .form-fields-dropdown-item:hover {
+    background: lightgray;
+  }
   `;
 
   const addNumberSliderCss = async () => {
