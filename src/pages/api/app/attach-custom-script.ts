@@ -1,7 +1,6 @@
 import {
   CUSTOM_SCRIPTS_CONFIG,
   CUSTOM_SCRIPTS_NAME,
-  customScriptName,
 } from "@/config/customScripts";
 import siteService from "@/server/services/siteService";
 import webflowClient from "@/server/webflow/client";
