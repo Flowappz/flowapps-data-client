@@ -16,6 +16,7 @@ export const CUSTOM_SCRIPTS_NAME = {
   DATE_PICKER_SCRIPT: "date picker script",
   USER_IP_SCRIPT: "user ip script",
   NUMBER_SLIDER_SCRIPT: "number slider script",
+  FORM_FIELDS_PRO_CDN_SCRIPT: "Form Fields Pro CDN Script",
 } as const;
 
 type scriptKeys = keyof typeof CUSTOM_SCRIPTS_NAME;
@@ -57,5 +58,15 @@ export const CUSTOM_SCRIPTS_CONFIG: {
     version: "0.0.2",
     location: "footer",
     path: `${CUSTOM_SCRIPTS_BASE_FILE_PATH}/minified/range-slider.min.js`,
+  },
+  [CUSTOM_SCRIPTS_NAME.FORM_FIELDS_PRO_CDN_SCRIPT]: {
+    displayName: CUSTOM_SCRIPTS_NAME.FORM_FIELDS_PRO_CDN_SCRIPT,
+    version: "0.0.1",
+    location: "footer",
+    hosted: true,
+    hostedLocation:
+      "https://cdn.jsdelivr.net/gh/rabbykhairul/jsdeliver-cdn-scripts@0482e015cb3d21d78f66021899de6669cd7482a7/form-fields-pro.js",
+    integrityHash:
+      "sha384-jEX30u1bjpdWVH+1oOq4E9ryxopQNspS8FTp+hQ2A5ceDRVFXteHyl01VKwewafd",
   },
 };
