@@ -37,6 +37,13 @@ export default async function handler(
     const serializedSites =
       webflowDataSerializer.serializedWebflowSitesListToDbSites(sites);
 
+    console.log(
+      "authcallback --> user: ",
+      serializedUser,
+      "sites: ",
+      serializedSites,
+    );
+
     const user = await userService.upsertUserAndSites(
       serializedUser,
       serializedSites,
