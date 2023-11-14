@@ -30,7 +30,7 @@ model Site {
     siteId     String   @unique
     workspaceId     String   
     displayName     String  
-    previewUrl   String
+    previewUrl   String?
     
 
     user    User?    @relation(fields: [userId], references: [id])
