@@ -67,6 +67,6 @@ export const CUSTOM_SCRIPTS_CONFIG: {
     hostedLocation:
       "https://cdn.jsdelivr.net/gh/rabbykhairul/jsdeliver-cdn-scripts@ae2c956190e424226418427efd7c79b04164bdb1/form-fields-pro.js",
     integrityHash:
-      "sha384-ry02dHXxEM80b5Y6nbxBbxes3+kdfoKHfwxsI3Z5awhRWQ2FPVbqdIK7wxhV6Xab",
+      "sha384-iUYwISBjmamsESsVlNkupDyPVQ6GwT3QdJ+VKi+3sLQwBgJTTASnCpsmV4Y11H2I",
   },
 };
