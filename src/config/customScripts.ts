@@ -61,12 +61,12 @@ export const CUSTOM_SCRIPTS_CONFIG: {
   // },
   [CUSTOM_SCRIPTS_NAME.FORM_FIELDS_PRO_CDN_SCRIPT]: {
     displayName: CUSTOM_SCRIPTS_NAME.FORM_FIELDS_PRO_CDN_SCRIPT,
-    version: "0.0.32",
+    version: "0.0.33",
     location: "footer",
     hosted: true,
     hostedLocation:
-      "https://cdn.jsdelivr.net/gh/rabbykhairul/jsdeliver-cdn-scripts@ae2c956190e424226418427efd7c79b04164bdb1/form-fields-pro.js",
+      "https://cdn.jsdelivr.net/gh/rabbykhairul/jsdeliver-cdn-scripts@76228ae0e7037c4b9c6a877c26284c18ec1f3785/form-fields-pro.js",
     integrityHash:
-      "sha384-iUYwISBjmamsESsVlNkupDyPVQ6GwT3QdJ+VKi+3sLQwBgJTTASnCpsmV4Y11H2I",
+      "sha384-m7GQrE8fp5kf8vfLITWUN6Zv7uHDKcq7lh92qbf5k7xMBqDwyNRjvGZ/Vy1/AaQb",
   },
 };
