@@ -27,6 +27,9 @@ export default async function handler(
         `Registering ${
           CUSTOM_SCRIPTS_CONFIG[CUSTOM_SCRIPTS_NAME.FORM_FIELDS_PRO_CDN_SCRIPT]
             .displayName
+        } - v${
+          CUSTOM_SCRIPTS_CONFIG[CUSTOM_SCRIPTS_NAME.FORM_FIELDS_PRO_CDN_SCRIPT]
+            .version
         } to site ${siteId}`,
       );
 
