@@ -23,23 +23,19 @@ export default async function handler(
     const webflowSite = await siteService.getSiteByWebflowId(siteId);
 
     if (webflowSite && webflowSite.user) {
-      console.log(
-        `Registering ${
-          CUSTOM_SCRIPTS_CONFIG[CUSTOM_SCRIPTS_NAME.FORM_FIELDS_PRO_CDN_SCRIPT]
-            .displayName
-        } - v${
-          CUSTOM_SCRIPTS_CONFIG[CUSTOM_SCRIPTS_NAME.FORM_FIELDS_PRO_CDN_SCRIPT]
-            .version
-        } to site ${siteId}`,
-      );
+      for (let name of Object.values(CUSTOM_SCRIPTS_NAME)) {
+        console.log(
+          `Registering ${CUSTOM_SCRIPTS_CONFIG[name].displayName} - v${CUSTOM_SCRIPTS_CONFIG[name].version} to site ${siteId}`,
+        );
 
-      await webflowClient.registerAndAddCustomCode(
-        siteId,
-        webflowSite.user.accessToken,
-        CUSTOM_SCRIPTS_CONFIG[CUSTOM_SCRIPTS_NAME.FORM_FIELDS_PRO_CDN_SCRIPT],
-      );
+        await webflowClient.registerAndAddCustomCode(
+          siteId,
+          webflowSite.user.accessToken,
+          CUSTOM_SCRIPTS_CONFIG[name],
+        );
 
-      console.log("Done!");
+        console.log("Done!");
+      }
 
       res.status(200).json({ siteId, status: "OK" });
     } else {
