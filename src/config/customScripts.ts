@@ -17,6 +17,7 @@ export const CUSTOM_SCRIPTS_NAME = {
   // USER_IP_SCRIPT: "user ip script",
   // NUMBER_SLIDER_SCRIPT: "number slider script",
   FORM_FIELDS_PRO_CDN_SCRIPT: "Form Fields Pro CDN Script",
+  SENTRY_LOG_SCRIPT: "Sentry log script",
 } as const;
 
 type scriptKeys = keyof typeof CUSTOM_SCRIPTS_NAME;
@@ -61,12 +62,22 @@ export const CUSTOM_SCRIPTS_CONFIG: {
   // },
   [CUSTOM_SCRIPTS_NAME.FORM_FIELDS_PRO_CDN_SCRIPT]: {
     displayName: CUSTOM_SCRIPTS_NAME.FORM_FIELDS_PRO_CDN_SCRIPT,
-    version: "0.0.40",
+    version: "0.0.41",
     location: "footer",
     hosted: true,
     hostedLocation:
-      "https://cdn.jsdelivr.net/gh/rabbykhairul/jsdeliver-cdn-scripts@4dbbae5b5b720785d3f62efe26edf8cd75c7e1da/form-fields-cdn.js",
+      "https://cdn.jsdelivr.net/gh/rabbykhairul/jsdeliver-cdn-scripts@e0847588b7c1dc8399d42fabe8239125d369d0f8/form-fields-pro.js",
     integrityHash:
-      "sha384-HQ4LNl69B9bgERhjAf5N/+i8fIIxIihB1+hGZIq4iO6bA19NGGKgTRpItJKRt7C5",
+      "sha384-06NsjmEtLKnr2m181K3wz77MNUuogYndiqXZpM8H2ukrq13mQOg30GhisvJYf17i",
+  },
+  [CUSTOM_SCRIPTS_NAME.SENTRY_LOG_SCRIPT]: {
+    displayName: CUSTOM_SCRIPTS_NAME.SENTRY_LOG_SCRIPT,
+    version: "0.0.1",
+    location: "header",
+    hosted: true,
+    hostedLocation:
+      "https://js.sentry-cdn.com/ab100a3836c462cc3042246f6be4f061.min.js",
+    integrityHash:
+      "sha384-yek0tAD12Z/46f68rKnaWU9okMlIg2MPq/nTLGJ/VwSxYlP1+hw04QmbfBkknyO6",
   },
 };
