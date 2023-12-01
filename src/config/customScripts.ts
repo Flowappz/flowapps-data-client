@@ -62,11 +62,11 @@ export const CUSTOM_SCRIPTS_CONFIG: {
   // },
   [CUSTOM_SCRIPTS_NAME.FORM_FIELDS_PRO_CDN_SCRIPT]: {
     displayName: CUSTOM_SCRIPTS_NAME.FORM_FIELDS_PRO_CDN_SCRIPT,
-    version: "0.0.42",
+    version: "1.0.0",
     location: "footer",
     hosted: true,
     hostedLocation:
-      "https://cdn.jsdelivr.net/gh/rabbykhairul/jsdeliver-cdn-scripts@2f0306154ece5983f0c61f41aed0cfb017b3a92c/form-fields-cdn.js",
+      "https://cdn.jsdelivr.net/gh/rabbykhairul/jsdeliver-cdn-scripts@1.0.0/form-fields-cdn.js",
     integrityHash:
       "sha384-/VcjMguglbG/dtYgQtV4AFBfsnjVQEgbXQvmQLaDC85oW3iZ5N3xAiqVHXjv+G7p",
   },
