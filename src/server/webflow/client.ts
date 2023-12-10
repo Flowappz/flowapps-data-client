@@ -48,6 +48,15 @@ const getAuthenticatedUser = async (
   return data as AuthenticatedUser;
 };
 
+const getSite = async (
+  accessToken: string,
+  siteId: string,
+): Promise<WebflowSite> => {
+  const { data } = await webflow(accessToken).get(`/sites/${siteId}`);
+
+  return data;
+};
+
 const getSitesList = async (accessToken: string): Promise<WebflowSite[]> => {
   const {
     data: { sites },
@@ -233,6 +242,7 @@ const getListOfRegisteredScripts = async (
 
 const webflowClient = {
   getAuthenticatedUser,
+  getSite,
   getSitesList,
   registerAndAddCustomCode,
   deleteCustomCode,
