@@ -3,7 +3,30 @@ import webflowDataSerializer from "@/server/serializer/webflowDataSerializer";
 import userService from "@/server/services/userService";
 import webflowAuth from "@/server/webflow/auth";
 import webflowClient from "@/server/webflow/client";
+import { Prisma } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
+
+const saveTargetSiteWithUser = async (
+  user: Prisma.UserCreateInput,
+  siteId: string,
+) => {
+  const site = await webflowClient.getSite(user.accessToken, siteId);
+  console.log("\n\nsite: ", site, "\n\n");
+  const serializedSite =
+    webflowDataSerializer.serializeWeblfowSiteToDbSite(site);
+
+  await userService.upsertUserAndSites(user, [serializedSite]);
+};
+
+const saveAllSitesWithUser = async (user: Prisma.UserCreateInput) => {
+  const sites = await webflowClient.getSitesList(user.accessToken);
+  const serializedSites =
+    webflowDataSerializer.serializedWebflowSitesListToDbSites(sites);
+
+  console.log("authcallback --> user: ", user, "sites: ", serializedSites);
+
+  await userService.upsertUserAndSites(user, serializedSites);
+};
 
 export default async function handler(
   req: NextApiRequest,
@@ -20,36 +43,29 @@ export default async function handler(
         "Error description: ",
         error_description,
       );
-      return;
+      return res.status(400).json({ message: "You didn't authorize the app." });
     }
 
     const accessToken = await webflowAuth.getAccessToken(code as string);
-    // const accessToken = "8edd0fbe8b6af5b3526516d310ca87743ee8a43fe7400d8d8ca93c4d8ce5fdf8";
-
     const webflowUser = await webflowClient.getAuthenticatedUser(accessToken);
+
     const serializedUser =
       webflowDataSerializer.serializeWebflowAuthenticatedUserToDbUser(
         webflowUser,
         accessToken,
       );
 
-    const sites = await webflowClient.getSitesList(accessToken);
-    const serializedSites =
-      webflowDataSerializer.serializedWebflowSitesListToDbSites(sites);
-
-    console.log(
-      "authcallback --> user: ",
-      serializedUser,
-      "sites: ",
-      serializedSites,
-    );
-
-    const user = await userService.upsertUserAndSites(
-      serializedUser,
-      serializedSites,
-    );
-
-    res.redirect("https://webflow.com/dashboard");
+    if (state) {
+      const { siteId, returnUrl } = JSON.parse(
+        Buffer.from(state as string, "base64").toString(),
+      );
+      await saveTargetSiteWithUser(serializedUser, siteId);
+      saveAllSitesWithUser(serializedUser);
+      res.redirect(returnUrl);
+    } else {
+      await saveAllSitesWithUser(serializedUser);
+      res.redirect("https://webflow.com/dashboard");
+    }
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Something went wrong!" });
