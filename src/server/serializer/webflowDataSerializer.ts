@@ -14,6 +14,17 @@ const serializeWebflowAuthenticatedUserToDbUser = (
   };
 };
 
+const serializeWeblfowSiteToDbSite = (site: WebflowSite) => {
+  const { id, displayName, previewUrl, workspaceId } = site;
+
+  return {
+    siteId: id,
+    displayName,
+    previewUrl,
+    workspaceId,
+  };
+};
+
 const serializedWebflowSitesListToDbSites = (
   sites: WebflowSite[],
 ): Prisma.SiteCreateInput[] => {
@@ -31,6 +42,7 @@ const serializedWebflowSitesListToDbSites = (
 
 const webflowDataSerializer = {
   serializeWebflowAuthenticatedUserToDbUser,
+  serializeWeblfowSiteToDbSite,
   serializedWebflowSitesListToDbSites,
 };
 
