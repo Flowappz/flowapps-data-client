@@ -68,7 +68,7 @@ export const CUSTOM_SCRIPTS_CONFIG: {
     hostedLocation:
       "https://cdn.jsdelivr.net/gh/rabbykhairul/jsdeliver-cdn-scripts@v4.0.0/form-fields-cdn.js",
     integrityHash:
-      "sha384-WyKauxb2k4jpBrxJiuLetMEAKmdxNDI4ZEo3O5UtbotnxIC7DxmxKAFxQ2YqmsYd",
+      "sha384-cdURcgOYYWlExN1OeuXBdv/vnevqJKrjiGnVl6z2gMOV7rK+TU2XhODAMkP1chcm",
   },
   [CUSTOM_SCRIPTS_NAME.SENTRY_LOG_SCRIPT]: {
     displayName: CUSTOM_SCRIPTS_NAME.SENTRY_LOG_SCRIPT,
@@ -76,7 +76,7 @@ export const CUSTOM_SCRIPTS_CONFIG: {
     location: "header",
     hosted: true,
     hostedLocation:
-      "sha384-cdURcgOYYWlExN1OeuXBdv/vnevqJKrjiGnVl6z2gMOV7rK+TU2XhODAMkP1chcm",
+      "https://js.sentry-cdn.com/ab100a3836c462cc3042246f6be4f061.min.js",
     integrityHash:
       "sha384-yek0tAD12Z/46f68rKnaWU9okMlIg2MPq/nTLGJ/VwSxYlP1+hw04QmbfBkknyO6",
   },
