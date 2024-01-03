@@ -62,13 +62,13 @@ export const CUSTOM_SCRIPTS_CONFIG: {
   // },
   [CUSTOM_SCRIPTS_NAME.FORM_FIELDS_PRO_CDN_SCRIPT]: {
     displayName: CUSTOM_SCRIPTS_NAME.FORM_FIELDS_PRO_CDN_SCRIPT,
-    version: "4.2.0",
+    version: "4.3.0",
     location: "footer",
     hosted: true,
     hostedLocation:
-      "https://cdn.jsdelivr.net/gh/rabbykhairul/jsdeliver-cdn-scripts@v4.2.0/form-fields-cdn.js",
+      "https://cdn.jsdelivr.net/gh/rabbykhairul/jsdeliver-cdn-scripts@v4.3.0/form-fields-cdn.js",
     integrityHash:
-      "sha384-C1hVkSXYCcCRHhnjMzNh1a5P8OZoHGFYUshRh+46t7nH2UeFKa8u3eIj+agDeVZU",
+      "sha384-5CXgW2qrVjNdRKL1/g474Q5D+wqN+oUkxysNdW5PN/RK+9TS7doJJH/KHvaVJgiN",
   },
   [CUSTOM_SCRIPTS_NAME.SENTRY_LOG_SCRIPT]: {
     displayName: CUSTOM_SCRIPTS_NAME.SENTRY_LOG_SCRIPT,
