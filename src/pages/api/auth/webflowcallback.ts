@@ -11,7 +11,6 @@ const saveTargetSiteWithUser = async (
   siteId: string,
 ) => {
   const site = await webflowClient.getSite(user.accessToken, siteId);
-  console.log("\n\nsite: ", site, "\n\n");
   const serializedSite =
     webflowDataSerializer.serializeWeblfowSiteToDbSite(site);
 
@@ -22,8 +21,6 @@ const saveAllSitesWithUser = async (user: Prisma.UserCreateInput) => {
   const sites = await webflowClient.getSitesList(user.accessToken);
   const serializedSites =
     webflowDataSerializer.serializedWebflowSitesListToDbSites(sites);
-
-  console.log("authcallback --> user: ", user, "sites: ", serializedSites);
 
   await userService.upsertUserAndSites(user, serializedSites);
 };
