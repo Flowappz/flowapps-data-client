@@ -33,7 +33,7 @@ export const CUSTOM_SCRIPTS_CONFIG: {
   },
   [CUSTOM_SCRIPTS_NAME.SENTRY_LOG_SCRIPT]: {
     displayName: CUSTOM_SCRIPTS_NAME.SENTRY_LOG_SCRIPT,
-    version: "0.0.1",
+    version: "0.0.2",
     location: "header",
     hosted: true,
     hostedLocation:
