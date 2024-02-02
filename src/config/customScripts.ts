@@ -39,6 +39,6 @@ export const CUSTOM_SCRIPTS_CONFIG: {
     hostedLocation:
       "https://js.sentry-cdn.com/ab100a3836c462cc3042246f6be4f061.min.js",
     integrityHash:
-      "sha384-yek0tAD12Z/46f68rKnaWU9okMlIg2MPq/nTLGJ/VwSxYlP1+hw04QmbfBkknyO6",
+      "sha384-r75M0mExW5rPf3Nk1PUzvkCeJiWDLz7TxiYBQg9EhDRR4sKqtnsdNbOgN4uIkTj3",
   },
 };
